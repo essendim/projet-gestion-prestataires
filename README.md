@@ -3,8 +3,8 @@
 ### Vérification des Endpoints de l'API
 
 1. **Pré-requis**
-   - **Postman ou Insomnia** : Utilisez un outil comme Postman ou Insomnia pour tester les requêtes HTTP.
-   - **Serveur d'API en cours d'exécution** : Assurez-vous que votre application Symfony est en cours d'exécution, généralement sur `http://localhost:8000` ou `http://127.0.0.1:8000`.
+   - **Postman ou Insomnia** : Utilisez un outil comme Postman pour tester les requêtes HTTP.
+   - **Serveur d'API en cours d'exécution** : Faites en sorteque votre application Symfony est en cours d'exécution, généralement sur `http://localhost:8000` ou `http://127.0.0.1:8000`.
 
 2. **Tester chaque Endpoint**
 
