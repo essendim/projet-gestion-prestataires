@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit backupGlobals="false"
+         bootstrap="./vendor/autoload.php">
+
+    <testsuites>
+        <testsuite name="Application Test Suite">
+            <directory>./tests</directory>
+        </testsuite>
+    </testsuites>
+
+    <filter>
+        <whitelist>
+            <directory suffix=".php">./src</directory>
+        </whitelist>
+    </filter>
+
+    <php>
+        <env name="APP_ENV" value="test"/>
+        <env name="MAILER_DSN" value="smtp://m.essendi@it-students.fr:Luffyblatte38@smtp.mailtrap.io:2525"/>
+    </php>
+</phpunit>
