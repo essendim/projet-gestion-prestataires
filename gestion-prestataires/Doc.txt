@@ -1,0 +1,93 @@
+Documentation des Étapes de Test
+1. Vérification des Endpoints de l'API
+a. Pré-requis
+Postman ou Insomnia: Utilisez un outil comme Postman ou Insomnia pour tester les requêtes HTTP.
+Serveur d'API en cours d'exécution: Assurez-vous que votre application Symfony est en cours d'exécution, généralement sur http://localhost:8000 ou http://127.0.0.1:8000.
+b. Tester chaque Endpoint
+1.1. Endpoints pour la gestion des prestataires (ProviderController)
+GET /api/providers
+
+Description: Récupère la liste de tous les prestataires.
+Étapes:
+Ouvrez Postman.
+Créez une nouvelle requête GET.
+Entrez l'URL: http://localhost:8000/api/providers.
+Cliquez sur "Send".
+Vérifiez: Un code de statut 200 et la réponse doit contenir une liste de prestataires.
+POST /api/providers
+
+Description: Crée un nouveau prestataire.
+Étapes:
+Sélectionnez la méthode POST.
+Entrez l'URL: http://localhost:8000/api/providers.
+Dans l'onglet "Body", sélectionnez "raw" et choisissez "JSON" comme type.
+Ajoutez un JSON valide pour le prestataire, par exemple :
+json
+Copier le code
+{
+    "name": "Prestataire Exemple",
+    "email": "exemple@prestataire.com"
+}
+Cliquez sur "Send".
+Vérifiez: Un code de statut 201 et le prestataire créé dans la réponse.
+PUT /api/providers/{id}
+
+Description: Met à jour un prestataire existant.
+Étapes:
+Sélectionnez la méthode PUT.
+Remplacez {id} par l'ID du prestataire à mettre à jour.
+Entrez l'URL: http://localhost:8000/api/providers/{id}.
+Dans le corps, ajoutez le JSON à mettre à jour.
+Vérifiez: Un code de statut 200 et le prestataire mis à jour dans la réponse.
+DELETE /api/providers/{id}
+
+Description: Supprime un prestataire.
+Étapes:
+Sélectionnez la méthode DELETE.
+Remplacez {id} par l'ID du prestataire à supprimer.
+Entrez l'URL: http://localhost:8000/api/providers/{id}.
+Cliquez sur "Send".
+Vérifiez: Un code de statut 204.
+1.2. Endpoints pour la gestion des services (ServiceController)
+GET /api/services
+
+Suivez les mêmes étapes que pour les prestataires, en remplaçant providers par services.
+POST /api/services, PUT /api/services/{id}, DELETE /api/services/{id}
+
+Suivez les mêmes étapes que pour les prestataires, en remplaçant providers par services.
+2. Tests pour le Cache
+a. Vérification du Cache
+Pour tester le cache, vous pouvez suivre ces étapes :
+
+Vérifiez que le cache fonctionne:
+Effectuez une requête vers un endpoint qui utilise le cache (par exemple, GET /api/providers).
+Vérifiez la première réponse et le temps de réponse.
+Effectuez la même requête plusieurs fois.
+Vérifiez: Le temps de réponse devrait être plus rapide lors des requêtes suivantes, indiquant que les données sont mises en cache.
+b. Effacement du Cache
+Vous pouvez également tester le mécanisme d’effacement du cache :
+
+Testez la commande de nettoyage du cache:
+Exécutez la commande suivante pour vider le cache :
+bash
+Copier le code
+php bin/console cache:clear
+Refaites la requête GET pour vérifier que les données mises en cache ont été effacées.
+3. Tests pour les Notifications
+a. Vérification des Notifications
+Si vous utilisez des notifications, assurez-vous que :
+
+Les notifications sont envoyées après des actions spécifiques (comme la création d'un prestataire).
+Testez:
+Créez un nouveau prestataire via POST.
+Vérifiez si une notification a été émise (vous pouvez vérifier votre système de notifications ou votre base de données).
+4. Tests pour les Logs
+a. Vérification des Logs
+Pour tester la fonctionnalité de journalisation :
+
+Générez un log :
+Effectuez une action qui devrait être enregistrée dans les logs (par exemple, créez ou mettez à jour un prestataire).
+Vérifiez les logs :
+Allez dans le répertoire des logs, généralement situé dans var/log/.
+Ouvrez le fichier de log correspondant à votre environnement (ex: dev.log ou prod.log).
+Assurez-vous que les actions effectuées sont bien enregistrées avec les niveaux de log appropriés (info, erreur, avertissement).
